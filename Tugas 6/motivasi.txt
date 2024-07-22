@@ -1,0 +1,2 @@
+motivasi saya mengikuti bootcamp adalah agar mampu menguasai backend developer dan ingin menjadi fullstack developer
+harapan saya setelah mengikuti bootcamp saya mampu menguasai framework Laravel

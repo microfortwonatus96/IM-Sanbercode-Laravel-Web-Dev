@@ -5,7 +5,13 @@
         <img src="{{asset('adminlte/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
+        @auth
+        <a href="#" class="d-block">{{Auth::user()->name}}</a>
+        @endauth
+        @guest
+        <a href="#" class="d-block">No Admin</a>
+            
+        @endguest
       </div>
     </div>
 
@@ -31,7 +37,32 @@
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
-              <span class="right badge badge-danger">New</span>
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/film" class="nav-link">
+            <i class="nav-icon fas fa-film"></i>
+            <p>
+              Film
+            </p>
+          </a>
+        </li>
+        @auth          
+        <li class="nav-item">
+          <a href="/genre" class="nav-link">
+            <i class="nav-icon fas fa-list"></i>
+            <p>
+              Genre
+            </p>
+          </a>
+        </li>
+        @endauth
+        <li class="nav-item">
+          <a href="/cast" class="nav-link">
+            <i class="nav-icon fas fa-list"></i>
+            <p>
+              Cast
             </p>
           </a>
         </li>
@@ -59,7 +90,29 @@
             </li>
           </ul>
         </li>
-        
+        @auth    
+        <li class="nav-item bg-danger">
+            <a class="nav-link" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </li>
+        @endauth
+        @guest
+        <li class="nav-item bg-primary">
+          <a href="/login" class="nav-link">
+            <i class="nav-icon fas fa-film"></i>
+            <p>
+              Login
+            </p>
+          </a>
+        </li>
+        @endguest
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

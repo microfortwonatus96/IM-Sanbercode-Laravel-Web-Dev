@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\CastController;
+use App\Http\Controllers\FilmController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\KritikController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,11 +27,12 @@ Route::get('/dataTable', function () {
     return view('layout.dataTable');
 });
 
-// Tambah Data genre
-Route::get('/genre/tambah', [GenreController::class, 'tambah']);
+Route::middleware(['auth'])->group(function () {
+    // CRUD Genre 
+    Route::resource('genre', GenreController::class);
 
-// mengirim inputan ke database tabel genre
-Route::post('/genre', [GenreController::class, 'genre']);
+    Route::post('/kritik/{film_id}', [KritikController::class, 'kritik']);
+});
 
 // Create Data cast
 // menampilkan form untuk membuat data pemain film baru
@@ -53,4 +56,12 @@ Route::put('/cast/{cast_id}', [CastController::class, 'update']);
 // Delete data cast
 // menghapus data pemain film dengan id tertentu 
 Route::delete('/cast/{cast_id}', [CastController::class, 'delete']);
+
+// CRUD Film 
+Route::resource('film', FilmController::class);
+
+
+
+
+Auth::routes();
 

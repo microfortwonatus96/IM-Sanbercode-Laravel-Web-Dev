@@ -1,9 +1,9 @@
 @extends('layout/master')
 @section('judul')
-    Halaman Tampil Cast
+    Halaman Tampil Genre
 @endsection
 @section('content')
-<a href="/cast/create" class="btn btn-sm btn-primary mb-3">Tambah Cast</a>
+<a href="/genre/create" class="btn btn-sm btn-primary mb-3">Tambah Genre</a>
 
 <table class="table">
     <thead>
@@ -14,14 +14,14 @@
       </tr>
     </thead>
     <tbody>
-        @forelse ($cast as $key => $items)
+        @forelse ($genre as $key => $items)
         <tr>
             <th scope="row">{{$key+1}}</th>
             <td>{{$items->nama}}</td>
             <td>               
-                <form action="/cast/{{$items->id}}" method="POST">
-                    <a href="/cast/{{$items->id}}" class="btn btn-sm btn-info">Detail</a>
-                    <a href="/cast/{{$items->id}}/edit" class="btn btn-sm btn-success">Edit</a>
+                <form action="/genre/{{$items->id}}" method="POST">
+                    <a href="/genre/{{$items->id}}" class="btn btn-sm btn-info">Detail</a>
+                    <a href="/genre/{{$items->id}}/edit" class="btn btn-sm btn-success">Edit</a>
                     @csrf
                     @method('delete')
 
